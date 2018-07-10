@@ -1,6 +1,10 @@
 FROM alpine:3.8
 
-MAINTAINER romain@homeloop.fr 
+LABEL maintainer=romain@homeloop.fr 
+
+# http://bugs.python.org/issue19846
+# > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
+ENV LANG C.UTF-8
 
 RUN apk update && apk add python3 python3-dev 
 RUN python3 -m ensurepip
