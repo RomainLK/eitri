@@ -5,7 +5,8 @@ MAINTAINER romain@homeloop.fr
 RUN apk update && apk add python3 python3-dev 
 RUN python3 -m ensurepip
 RUN apk add nodejs npm zip bash libpng libpng-dev gcc g++ make autoconf  \
-    automake libtool nasm openjdk8 git curl grep sed unzip postgresql-dev
+    automake libtool nasm openjdk8 git curl grep sed unzip postgresql-dev \
+    gfortran build-base py3-numpy
 RUN pip3 install --upgrade pip
 RUN pip3 install awscli
 RUN npm install -g npm
