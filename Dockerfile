@@ -59,7 +59,7 @@ RUN addgroup sonar && \
   chown -R sonar:sonar ${SONAR_RUNNER_HOME} && \
   chown -R sonar:sonar ${WORKDIR}
 
-ENV PATH $PATH:/root/sonar-scanner-3.2.0.1227-linux/bin
+ENV PATH $PATH:${SONAR_RUNNER_HOME}/bin
 
 USER sonar
 
