@@ -46,4 +46,4 @@ RUN rm sonarscanner.zip
 ENV SONAR_RUNNER_HOME=/root/sonar-scanner-3.2.0.1227-linux
 ENV PATH $PATH:/root/sonar-scanner-3.2.0.1227-linux/bin
 
-CMD ["/bin/bash"]
+ENTRYPOINT []
