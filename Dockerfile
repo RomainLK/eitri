@@ -37,13 +37,30 @@ RUN set -x \
 #
 #   https://github.com/docker-library/openjdk/issues
 
-WORKDIR /root
+
+ENV SONAR_SCANNER_VERSION 2.8
+ENV SONAR_SCANNER_HOME /home/sonar-scanner-${SONAR_SCANNER_VERSION}
+ENV SONAR_SCANNER_PACKAGE sonar-scanner-${SONAR_SCANNER_VERSION}.zip
+ENV SONAR_RUNNER_HOME ${SONAR_SCANNER_HOME}
+ENV PATH $PATH:${SONAR_SCANNER_HOME}/bin
+
+ENV WORKDIR /home/workspace
+ENV SONAR_RUNNER_HOME=${WORKDIR}/sonar-scanner-3.2.0.1227-linux
+
+WORKDIR /home/workspace
+
 
 RUN curl --insecure -o ./sonarscanner.zip -L https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
 RUN unzip sonarscanner.zip
 RUN rm sonarscanner.zip
 
-ENV SONAR_RUNNER_HOME=/root/sonar-scanner-3.2.0.1227-linux
+RUN addgroup sonar && \
+  useradd -s /usr/sbin/nologin -d ${SONAR_RUNNER_HOME} -g sonar sonar && \
+  chown -R sonar:sonar ${SONAR_RUNNER_HOME} && \
+  chown -R sonar:sonar ${WORKDIR}
+
 ENV PATH $PATH:/root/sonar-scanner-3.2.0.1227-linux/bin
+
+USER sonar
 
 ENTRYPOINT []
