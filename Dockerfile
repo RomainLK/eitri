@@ -10,7 +10,7 @@ RUN apk update && apk add python3 python3-dev nodejs npm zip bash libpng libpng-
 RUN python3 -m ensurepip
 RUN pip3 install --upgrade pip
 RUN pip3 install awscli
-RUN npm install -g npm
+RUN npm install -g npm@6.2.0
 
 # add a simple script that can auto-detect the appropriate JAVA_HOME value
 # based on whether the JDK or only the JRE is installed
